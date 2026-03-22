@@ -1,9 +1,7 @@
 import 'package:cool_alert/cool_alert.dart';
 import 'package:cool_alert/src/constants/images.dart';
 import 'package:cool_alert/src/models/cool_alert_options.dart';
-import 'package:cool_alert/src/utils/single_loop_controller.dart';
 import 'package:cool_alert/src/widgets/cool_alert_buttons.dart';
-import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -76,9 +74,6 @@ class CoolAlertContainer extends StatelessWidget {
           anim = AppAnim.info;
       }
 
-      if (options.flareAsset != null) {
-        anim = options.flareAsset;
-      }
       return Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -91,20 +86,10 @@ class CoolAlertContainer extends StatelessWidget {
         child: SizedBox(
           height: 150,
           width: 150,
-          child: options.lottieAsset == null
-              ? FlareActor(
-                  anim,
-                  animation:
-                      options.loopAnimation ? options.flareAnimationName : null,
-                  controller: options.loopAnimation
-                      ? null
-                      : SingleLoopController(
-                          options.flareAnimationName!,
-                          1,
-                        ),
-                )
-              : Lottie.asset(options.lottieAsset!,
-                  repeat: options.loopAnimation),
+          child: Lottie.asset(
+            options.lottieAsset ?? anim,
+            repeat: options.loopAnimation,
+          ),
         ),
       );
     }
@@ -117,12 +102,10 @@ class CoolAlertContainer extends StatelessWidget {
         child: SizedBox(
           height: 100,
           width: 100,
-          child: options.lottieAsset == null
-              ? FlareActor(
-                  AppAnim.loading,
-                  animation: options.flareAnimationName,
-                )
-              : Lottie.asset(options.lottieAsset!),
+          child: Lottie.asset(
+            options.lottieAsset ?? AppAnim.loading,
+            repeat: true,
+          ),
         ),
       );
     } else {
@@ -195,8 +178,6 @@ class CoolAlertContainer extends StatelessWidget {
       case CoolAlertType.custom:
         return null;
       case CoolAlertType.loading:
-        return null;
-      default:
         return null;
     }
   }

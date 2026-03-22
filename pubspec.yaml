@@ -5,13 +5,12 @@ version: 2.0.1
 homepage: https://github.com/emrade/flutter_cool_alert.git
 
 environment:
-  sdk: ">=2.18.0 <3.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  flare_flutter: ^3.0.2
   flutter:
     sdk: flutter
-  lottie: ^2.2.0
+  lottie: ^3.3.2
   vector_math: ^2.1.4
 
 dev_dependencies:
@@ -25,7 +24,7 @@ dev_dependencies:
 flutter:
   # To add assets to your package, add an assets section, like this:
   assets:
-    - assets/flare/
+    - assets/lottie/
   # For details regarding assets in packages, see
   # https://flutter.dev/assets-and-images/#from-packages
   #

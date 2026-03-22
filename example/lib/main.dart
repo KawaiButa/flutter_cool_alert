@@ -148,14 +148,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
               return;
             }
-            Navigator.of(context).pop();
-            await Future.delayed(const Duration(milliseconds: 500), () async {
-              await CoolAlert.show(
-                context: context,
-                type: CoolAlertType.success,
-                text: "Phone number '$message' has been saved!.",
-              );
-            });
+            final navigator = Navigator.of(context);
+            navigator.pop();
+            await Future.delayed(const Duration(milliseconds: 500));
+            if (!context.mounted) return;
+            await CoolAlert.show(
+              context: context,
+              type: CoolAlertType.success,
+              text: "Phone number '$message' has been saved!.",
+            );
           },
         );
       },

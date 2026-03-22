@@ -20,8 +20,6 @@ class CoolAlertOptions {
   bool? showCancelBtn;
   double? borderRadius;
   Color? backgroundColor;
-  String? flareAsset;
-  String? flareAnimationName;
   String? lottieAsset;
   double? width;
   bool loopAnimation;
@@ -48,8 +46,6 @@ class CoolAlertOptions {
     this.showCancelBtn,
     this.borderRadius,
     this.backgroundColor,
-    this.flareAsset,
-    this.flareAnimationName,
     this.lottieAsset,
     this.width,
     this.loopAnimation = false,

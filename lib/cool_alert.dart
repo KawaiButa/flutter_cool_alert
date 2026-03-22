@@ -79,12 +79,6 @@ class CoolAlert {
     /// Header background color
     Color backgroundColor = const Color(0xFF515C6F),
 
-    /// Flare asset path
-    String? flareAsset,
-
-    /// Flare animation name
-    String flareAnimationName = 'play',
-
     /// Asset path of your lottie file
     String? lottieAsset,
 
@@ -109,8 +103,9 @@ class CoolAlert {
     bool reverseBtnOrder = false,
   }) {
     if (autoCloseDuration != null) {
+      final navigator = Navigator.of(context, rootNavigator: true);
       Future.delayed(autoCloseDuration, () {
-        Navigator.of(context, rootNavigator: true).pop();
+        navigator.pop();
       });
     }
 
@@ -133,8 +128,6 @@ class CoolAlert {
       showCancelBtn: showCancelBtn,
       borderRadius: borderRadius,
       backgroundColor: backgroundColor,
-      flareAsset: flareAsset,
-      flareAnimationName: flareAnimationName,
       lottieAsset: lottieAsset,
       width: width,
       loopAnimation: loopAnimation,
@@ -154,7 +147,7 @@ class CoolAlert {
     );
 
     return showGeneralDialog(
-      barrierColor: Colors.black.withOpacity(0.5),
+      barrierColor: Colors.black.withValues(alpha: 0.5),
       transitionBuilder: (context, anim1, __, widget) {
         switch (animType) {
           case CoolAlertAnimType.scale:
@@ -174,9 +167,6 @@ class CoolAlert {
 
           case CoolAlertAnimType.slideInRight:
             return Animate.slideInRight(child: child, animation: anim1);
-
-          default:
-            return child;
         }
       },
       transitionDuration: const Duration(milliseconds: 200),
